@@ -1,0 +1,1280 @@
+\documentclass[9pt,pdf,utf8,hyperref={unicode},aspectratio=169]{beamer}
+
+%Привычный шрифт для математических формул
+\usefonttheme[onlymath]{serif}
+\mode<presentation>
+{
+    \usetheme{boxes}
+    \beamertemplatenavigationsymbolsempty
+
+    \setbeamercovered{transparent}
+    \setbeamertemplate{navigation symbols}{}
+    
+    \setbeamertemplate{footline}[frame number]
+    \setbeamertemplate{caption}[numbered]
+    % \setbeamersize{text margin left=0.5em, text margin right=0.5em}
+}
+
+% Дополнительные библиотеки
+\usepackage[T2A]{fontenc}
+\usepackage[english, russian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{indentfirst}
+\usepackage{changepage}
+\usepackage{enumerate}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{ragged2e}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{comment}
+\usepackage{subfig}
+\usepackage{array}
+\usepackage{color}
+\usepackage{url}
+\usepackage{bm}
+
+% Определение дополнительных функций
+\DeclareMathOperator*{\plim}{\mathop{plim}}
+\DeclareMathOperator{\prob}{\mathbf{P}\!}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\mmode}{mode}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\pow}{pow}
+\DeclareMathOperator{\med}{med}
+
+\def\argmin#1{ \mathop{\text{argmin}}\limits_{#1} }
+\def\argmax#1{ \mathop{\text{argmax}}\limits_{#1} }
+
+% Основная часть
+
+\title{Прикладной статистический анализ данных\\~\\~\\\large{Введение: распределения, статистики, оценки, гипотезы}}
+
+\author{Андрей Грабовой}
+\date{}
+
+\begin{document}
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\section{Введение}
+\subsection{Мотивация}
+\begin{frame}{Зачем нужен этот курс}
+{
+	\only<1>{
+		\begin{itemize}
+			\item cпецифические статистические методы для конкретных постановок задач
+			\item границы применимости методов
+			\item статистическое мышление
+		\end{itemize}
+	}	
+
+	\only<2>{
+		\begin{itemize}
+			\item cпецифические статистические методы для конкретных постановок задач
+			\item \textbf{границы применимости методов}
+		\begin{adjustwidth}{0.5cm}{}
+			\normalsize (Marriott, 1974):
+			\textit{If the results disagree with informed opinion, do not admit a simple logical interpretation, and do not show up clearly in a graphical presentation, they are probably wrong. There is no magic about numerical methods, and~many ways in which they can break down. They are a valuable aid to~the interpretation of data, not sausage machines automatically transforming bodies of numbers into packets of scientific fact.}
+		\end{adjustwidth}
+			\item статистическое мышление
+		\end{itemize}
+	}		
+
+	\only<3>{
+		\begin{itemize}
+			\item специфические статистические методы для конкретных постановок задач
+			\item границы применимости методов
+            \begin{adjustwidth}{0.5cm}{}
+			\normalsize (Marriott, 1974):
+			\textit{If the results disagree with informed opinion, do not admit a simple logical interpretation, and do not show up clearly in a graphical presentation, they are probably wrong. There is no magic about numerical methods, and~many ways in which they can break down. They are a valuable aid to~the interpretation of data, not sausage machines automatically transforming bodies of numbers into packets of scientific fact.}
+		\end{adjustwidth}
+			\item \textbf{статистическое мышление}
+		\begin{adjustwidth}{0.5cm}{} \normalsize (Begg et al., 1992):
+		\textit{ Понимание механизмов работы статистики позволяет находить менее стереотипные и более осознанные решения повседневных задач.}
+		\end{adjustwidth}
+		\end{itemize}
+	}			
+}
+\end{frame}
+
+\subsection{Статистика}
+\begin{frame}{Случайность}
+\only<1>{
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{Dice_7.png}
+    \end{center}
+}
+\only<2>{
+    \begin{center}
+        \includegraphics[height=0.6\textheight]{box1.png}
+    \end{center}
+}
+\only<3>{
+    \begin{center}
+        \includegraphics[height=0.6\textheight]{box2.png}
+    \end{center}
+}
+\only<4>{
+    \begin{center}
+        \includegraphics[height=0.6\textheight]{box3.png}
+    \end{center}
+}
+\only<5>{
+    \begin{center}
+        \includegraphics[height=0.6\textheight]{box4.png}
+    \end{center}
+}
+\end{frame}
+
+\begin{frame}{Изучение случайности}
+\only<1>{
+	\vspace{-5pt}
+	
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{box21.png}
+    \end{center}
+}
+\only<2>{
+\textbf{Вероятность события}~---  доля испытаний, завершившихся наступлением события, в бесконечном эксперименте.    
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{box21.png}
+    \end{center}
+    
+
+   
+
+}
+\only<3>{
+    \begin{center}
+       \includegraphics[width=0.5\textwidth]{box22.png}
+    \end{center}
+}
+\only<4>{
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{box23.png}
+    \end{center}
+}
+\only<5>{
+    \textbf{Закон больших чисел}: на больших выборках частота события хорошо приближает его вероятность.
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{box24.png}
+    \end{center}
+
+}
+\end{frame}
+
+\begin{frame}{Описание случайных величин}
+Дискретная случайная величина $X$ принимает счётное множество значений $A = \left\{a_1,a_2,\dots \right\}$
+с вероятностями $p_1,p_2,\dots$, $\sum\limits_{i}p_1=1.$ 
+
+\bigskip
+
+$f_X\!\left(a_i\right)=\prob\left(X=a_i\right)=p_i$~--- \textbf{функция вероятности}.
+
+\bigskip
+
+Непрерывная случайная величина задаётся с помощью \textbf{функции распределения}:
+    $$F_X(x) = \prob\left(X\leq x\right)$$
+    
+    или \textbf{плотности распределения}:
+    $$f_X\!\left(x\right)\colon \int\limits_a^b f_X\!\left(x\right) dx = \prob\left(a\leq X \leq b\right).$$
+\end{frame}
+
+\begin{frame}{Характеристики распределений}
+\only<1>{
+
+	\begin{itemize}
+		\item \textbf{матожидание}~--- среднее значение $X$:
+		$$\mathbb{E}X = \int\! x \,dF(x)$$
+		\item \textbf{дисперсия}~--- мера разброса $X$:
+		$$\mathbb{D}X = \mathbb{E}\left(\left(X-\mathbb{E}X\right)^2\right)$$
+		\item \textbf{квантиль} порядка $\alpha\in\left(0,1\right)$:
+		$$X_\alpha \colon \;\; \prob\left(X\leq X_\alpha\right) \geq \alpha, \;\; \prob\left(X\geq X_\alpha\right) \geq 1-\alpha$$
+		эквивалентное определение:
+		$$X_\alpha=F^{-1}\left(\alpha\right)=\inf \{x\colon F\left(x\right) \geq \alpha\}$$
+		\item \textbf{медиана}~--- квантиль порядка $0.5$, центральное значение распределения:
+		$$\med X \colon \;\; \prob\left(X\leq \med X\right) \geq 0.5, \;\; \prob\left(X\geq \med X \right) \geq0.5$$
+		\item \textbf{интерквартильный размах}:
+		$$IQR = X_{0.75} - X_{0.25}$$
+		\item \textbf{мода}~--- точка максимума функции вероятности или плотности:
+				$$\mmode X = \argmax{x} f\left(x\right)$$
+	\end{itemize}
+	}
+	
+	\only<2>{
+	\begin{itemize}
+	\item \textbf{коэффициент ассиметрии} (skewness):
+	\end{itemize}
+	$$\gamma_1 = \mathbb{E} \left( \frac{X-\mathbb{E}X} {\sqrt{\mathbb{D}X}} \right)^3$$
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{skewness.png}
+	\end{center}
+	}
+
+	\only<3>{
+	$\gamma_1=0$~--- необходимое, но не достаточное условие симметричности:
+	
+	\bigskip
+	
+	\begin{center}
+	\includegraphics[height=0.7\textheight]{Capture.png}
+	\end{center}
+	}
+	
+	\only<4>{
+		\begin{itemize}
+			\item \textbf{коэффициент эксцесса} (excess, без вычитания тройки~--- kurtosis):
+		\end{itemize}
+	$$\gamma_2 =  \frac{\mathbb{E}\left(X-\mathbb{E}X\right)^4}{\left(\mathbb{D}X\right)^2} - 3$$
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{kurtosis.png}
+	\end{center}
+	}
+\end{frame}
+
+\section{Распределения}
+\subsection{Непрерывные распределения}
+\begin{frame}{Нормальное распределение}
+\only<1>{
+    $$X\in \mathbb{R} \sim N\left(\mu, \sigma^2\right), \; \sigma^2>0$$
+    \begin{center}
+        \includegraphics[width=\textwidth]{norm.png}
+    \end{center}
+    \begin{align*}
+         F\left(x\right) &= \Phi\left(\frac{x-\mu}{\sigma}\right)                &\Phi\left(x\right) &= \frac1{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} dt\\
+         f\left(x\right) &= \frac1{\sigma}\phi\left(\frac{x-\mu}{\sigma}\right)  &\phi\left(x\right) &= \frac1{\sqrt{2\pi}} e^{-\frac{x^2}{2}}\\
+    \end{align*}
+    }
+
+    \only<2>{
+	\begin{itemize}
+	    \item предельное распределение суммы слабо взаимозависимых сл.\,в.
+	    \item $\mathbb{E}X = \med X = \mmode X = \mu$, $\mathbb{D}X  = \sigma^2$,  все моменты более высокого порядка нулевые
+    	\item пусть $X_1,\dots,X_n$ независимы, \; $X_i\sim N\left(\mu_i, \sigma_i^2\right),$ тогда $\forall a_1,\dots,a_n$
+    	$$\sum\limits_{i=1}^n a_i X_i \sim N\left(\sum_{i=1}^n a_i \mu_i, \sum_{i=1}^n a_i^2 \sigma_i^2\right)$$
+    	\item центральная предельная теорема: пусть $X_1,\dots,X_n$ i.i.d. с $\mathbb{E}X$ и $\mathbb{D}X<\infty$, тогда
+    	$$\frac1{n}\sum_{i=1}^n X_i \sim \approx N\left(\mathbb{E}X, \frac{\mathbb{D}X}{n}\right)$$
+    	\item пример: погрешность измерения
+    \end{itemize}        
+    }
+\end{frame}
+
+\begin{frame}{Распределение хи-квадрат}
+ \only<1>{
+    \begin{itemize}
+    \item пусть $X_1,\dots,X_k$~--- i.i.d., \; $X_i\sim N\left(0,1\right),$ тогда 
+    $$\sum\limits_{i=1}^k X_i^2 \sim \chi^2_k$$
+    \item пример: нормированная выборочная дисперсия: $$(n-1)\frac{S_n^2}{\sigma^2}\sim \chi^2_{n-1}$$
+    \end{itemize}
+    }
+
+    \only<2>{
+    $$X\in \mathbb{R}_+ \sim \chi^2_k, \; k\in\mathbb{N}$$
+    
+    \begin{center}
+    	\includegraphics[width=\textwidth]{chi2.png}
+    \end{center}
+    \vspace{-10pt}
+    \begin{align*}
+         F\left(x\right)        &= \frac1{\Gamma\left(\frac{k}{2}\right)}\gamma\left(\frac{k}{2}, \frac{x}{2}\right) \\
+         f\left(x\right)        &= \frac1{2^{\frac{k}{2}}\Gamma\left(\frac{k}{2}\right)}x^{\frac{k}{2}-1}e^{-\frac{x}{2}}  \\
+    \end{align*}
+    
+    \vspace{-20pt}
+    
+	{\small
+    $\Gamma\left(x\right) = \int_0^{\infty} t^{x-1} e^{-t} dt$~--- гамма"=функция
+    
+    $\gamma\left(a,x\right) = \int_0^x e^{-t} t^{a-1} dt$~--- нижняя неполная гамма"=функция
+	}
+    }
+
+   
+\end{frame}
+
+\begin{frame}{Распределение Фишера}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Распределение Фишера может выглядеть очень по-разному при разных значениях своих параметров.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \only<1>{
+    \begin{itemize}
+    \item пусть $X_1\sim\chi^2_{d_1},$\; $X_2\sim\chi^2_{d_2},$  \; $X_1$ и $X_2$ независимы, тогда
+    $$\frac{X_1/d_1}{X_2/d_2} \sim F\left(d_1,d_2\right)$$
+    \item  если $X\sim F\left(d_1,d_2\right),$ то
+    $$Y = \lim_{d_2\rightarrow \infty} d_1X \sim \chi^2_{d_1}$$
+    \item $F\left(x,d_1,d_2\right) = F\left(1/x,d_2,d_1\right)$
+    \item возникает в дисперсионном и регрессионном анализе
+    \end{itemize}
+    }
+
+    \only<2>{
+    $$X\in \mathbb{R}_+ \sim F\left(d_1,d_2\right), \; d_1,d_2>0$$
+
+    \begin{center}
+    	\includegraphics[width=\textwidth]{fish.png}
+    \end{center}
+    
+    \vspace{-20pt}
+    
+    \begin{align*}
+         F\left(x\right)        = I_{\frac{d_1 x}{d_1 x + d_2}} \left(\frac{d_1}{2}, \frac{d_2}{2} \right) \qquad
+         f\left(x\right)        = \left. \sqrt{\frac{\left(d_1x\right)^{d_1}d_2^{d_2}}{\left(d_1x+d_2\right)^{d_1+d_2}}} \middle/  xB\left(\frac{d_1}{2}, \frac{d_2}{2}\right) \right. \\
+    \end{align*}
+
+    \vspace{-20pt}
+
+	{\footnotesize
+    $B\left(a,b\right) = \int_0^1 t^{a-1} \left(1-t\right)^{b-1} dt$~--- бета-функция
+
+    $I_x\left(a,b\right) = \frac{B\left(x; a,b\right)}{B\left(a,b\right)}$~--- регуляризованная неполная бета-функция
+
+    $B\left(x; a,b\right) = \int_0^x t^{a-1} \left(1-t\right)^{b-1} dt$~--- неполная бета-функция
+	}
+    }
+
+\end{frame}
+
+\begin{frame}{Распределение Стьюдента}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Распределение Стьюдента похоже на стандартное нормальное - у него всегда нулевое среднее, но хвосты более тяжёлые. Чем больше число степеней свободы, тем меньше отличия - уже начиная с nu=30 визуально отличить из невозможно (эвристика alert!) Как и предыдущие, может определяться с нецелым числом степеней свободы - мы будем этим активно пользоваться в дальнейшем.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \only<1>{
+    \begin{itemize}
+    \item $\mathbb{E}X = 0$  при  $\nu>1$, $\med X = \mmode X = 0$ всегда
+    \item пусть $Z\sim N\left(0,1\right)$  и $V\sim\chi^2_{\nu}$ независимы, тогда
+    $$T = \frac{Z}{\sqrt{V/\nu}} \sim St\left(\nu\right)$$
+    \item если $X\sim St\left(\nu\right),$ то
+    $$Y = \lim_{\nu\rightarrow\infty} X \sim N\left(0,1\right)$$
+    \item возникает при оценке среднего значения сл.\,в. с неизвестной дисперсией
+    \end{itemize}
+    }
+
+    \only<2>{
+    $$X\in \mathbb{R} \sim St\left(\nu\right), \; \nu>0$$
+    
+    \begin{center}
+        \includegraphics[width=\textwidth]{stud.png}
+    \end{center}
+    \begin{align*}
+         F\left(x\right)        &= \frac1{2}+x\Gamma\left(\frac{\nu+1}{2}\right) \\
+         f\left(x\right)        &= \frac{\Gamma\left(\frac{\nu+1}{2}\right)}{\sqrt{\nu\pi} \Gamma\left(\frac{\nu}{2}\right)} \left(1+\frac{x^2}{\nu}\right)^{-\frac{\nu+1}{2}} \\
+    \end{align*}
+    }
+
+\end{frame}
+\subsection{Дискретные распределения}
+\begin{frame}{Распределение Бернулли}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \only<1>{
+    $$X\in \left\{0, 1\right\} \sim Ber\left(p\right), \;\; p \in \left(0,1\right)$$
+    
+%    
+    \begin{center}
+    	\includegraphics[width=0.8\textwidth]{ber.png}
+    \end{center}
+
+\vspace{-10pt}
+
+    \begin{align*}
+         F\left(x\right)        &= \begin{cases}
+                            0, & x<0, \\
+                            1-p, & 0\leq x<1, \\
+                            1, & x\geq 1.
+                        \end{cases} \\
+         f\left(x\right)        &= \begin{cases}
+                            1-p, & x=0, \\
+                            p,   & x=1.
+                        \end{cases}  \\
+    \end{align*}
+
+\vspace{-10pt}
+
+    \begin{itemize}
+  	\item пример: результат подбрасывания монеты
+    \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Биномиальное распределение}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \only<1>{
+    $$X\in \left\{0, \dots,N\right\} \sim Bin\left(N,p\right), \; N \in \mathbb{N}, \;\; p\in\left[0,1\right]$$
+    
+    \begin{center}
+        \includegraphics[width=\textwidth]{bin.png}
+    \end{center}
+    \begin{align*}
+         F\left(x\right)        &= I_{1-p}\left(N-x, 1+x\right) \\
+         f\left(x\right)        &= C_N^x p^x \left(1-p\right)^{N-x}  \\
+    \end{align*}
+    }
+
+	\only<2>{
+    \begin{itemize}
+    \item пусть $X_1,\dots,X_n$ независимы, $X_i\sim Ber(p)$, тогда $$\sum_{i=1}^n X_i \sim Bin(n,p).$$
+    \item $Bin\left(1,p\right) = Ber\left(p\right)$
+    \item если $N>20$ и $p$ не слишком близко к нулю или единице, то для $X\sim Bin\left(N,p\right)$ справедлива нормальная аппроксимация:
+    $$F_X\left(x\right) \approx \Phi \left(\frac{x-Np}{\sqrt{Np\left(1-p\right)}}\right)$$
+    \item пример: число попаданий из $N$ бросков в баскетбольное кольцо 
+    \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Распределение Пуассона}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Распределение Пуассона - дефолтное распределение для счётчиков, точно так же как нормальное - для непрерывных случайных величин. Это не значит, что все счётчики описываются этим распределением, а только что его имеет смысл попробовать в первую очередь. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \only<1>{
+    $$X\in \left\{0,1,2,\dots \right\} \sim Pois\left(\lambda\right), \; \lambda>0$$
+
+    \begin{center}
+        \includegraphics[width=\textwidth]{poiss.png}
+    \end{center}
+    \begin{align*}
+         F\left(x\right)        &= e^{-\lambda}\sum\limits_{i=0}^{\lfloor x\rfloor} \frac{\lambda^i}{i!} \\
+         f\left(x\right)        &= e^{-\lambda} \frac{\lambda^x }{x!} \\
+    \end{align*}
+    }
+
+    \only<2>{
+    \begin{itemize}
+	    \item распределение числа независимых событий в~фиксированном временном или пространственном интервале
+	    \item $\mathbb{E}X = \mathbb{D}X = \lambda$
+    	\item пусть $X_1,\dots,X_n$ независимы, \; $X_i\sim Pois\left(\lambda_i\right),$ тогда
+    	$$\sum\limits_{i=1}^n X_i \sim Pois\left(\sum_{i=1}^n \lambda_i\right)$$
+    	\item если $X\sim Pois\left(\lambda\right),$ $Y=\sqrt{X},$  то при больших $\lambda$ $$F_Y\left(x\right)\approx \Phi\left(\frac{x-\sqrt{\lambda}}{\sqrt{\lambda}}\right)$$
+    	\item  $Bin(n,p) \to_{n \to \infty} Pois(\lambda)$ при постоянном $np$
+    	\item пример: количество изюма в булочке с изюмом 
+    \end{itemize}    
+    }
+\end{frame}
+
+\section{Статистики}
+\subsection{Выборка и статистика}
+\begin{frame}{Выборка}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \textbf{Генеральная совокупность}~--- множество объектов, свойства которых подлежат изучению в рассматриваемой задаче.
+
+    \bigskip
+
+    \textbf{Выборка}~--- конечное множество объектов, отобранных из генеральной совокупности для проведения измерений.
+    $$X^n=\left(X_1,\dots,X_n\right).$$
+    $n$~--- \textbf{объём выборки}.
+
+    \bigskip
+
+    $X^n$~--- \textbf{простая выборка}, если $X_1,\dots,X_n$~--- независимые одинаково распределённые случайные величины (i.i.d.).
+
+    \bigskip
+
+    Основная задача статистики --- описание $F_X(x)$ по реализации выборки.
+\end{frame}
+
+\begin{frame}{Функция распределения}
+    $F_n\left(x\right) = \frac1{n} \sum\limits_{i=1}^n \left[X_i\leq x\right]$~--- \textbf{эмпирическая функция распределения}.
+    \begin{center}
+   		\includegraphics[width=0.9\textwidth]{ecdf.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Плотность распределения}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{epdf.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Статистика}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Мы научились оценивать распределение случайной величины по выборке, можно расходиться! На самом деле нет. Часто нам интересно не распределение целиком, а какие-то его конкретные характеристики. Самые популярные, естественно, средние. Для оценки таких характеристик мы будем использовать основной инструмент статистики - статистики. Слово "измеримая" в курсе больше не будет встречаться никогда.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\only<1>{
+	\textbf{Статистика} $T(X^n)$~--- любая измеримая функция выборки.
+	\begin{itemize}
+		\item выборочное среднее:
+		$$\bar{X} = \frac1{n}\sum\limits_{i=1}^n X_i$$
+		\item выборочная дисперсия:
+		$$S^2 = \frac1{n-1}\sum\limits_{i=1}^n \left(X_i-\bar{X}\right)^2$$
+	\end{itemize}
+	
+	\textbf{вариационный ряд}:
+	$$X_{(1)}\leq X_{(2)} \leq \dots \leq X_{(n)}$$
+	\textbf{ранг} элемента выборки $X_i$:
+	$$\rank\left(X_i\right)=r\colon X_i=X_{(r)}$$
+	
+	\begin{itemize}
+		\item $k$-я порядковая статистика: $X_{(k)}$
+		\item выборочный $\alpha$-квантиль: $X_{(\left[n\alpha\right])}$
+		\item выборочная медиана:
+		$$m = \begin{cases}
+		X_{(k+1)}, & \text{если } n=2k+1, \\
+		\frac{X_{(k)}+X_{(k+1)}}{2}, & \text{если } n=2k.\\
+		\end{cases}$$
+	\end{itemize}
+	}
+	
+	\only<2>{
+	\begin{itemize}
+		\item выборочный интерквартильный размах:
+			$$IQR_n = X_{([0.75 n])} - X_{([0.25n])}$$
+		\item выборочный коэффициент ассиметрии:
+			$$g_1 = \frac{\sqrt{n} \sum\limits_{i=1}^n \left(X_i-\bar{X}\right)^3}{\left(\sum\limits_{i=1}^n \left(X_i - \bar{X}\right)^2 \right)^{3/2}}$$
+		\item выборочный коэффициент эксцесса:
+		 	$$g_2 = \frac{n \sum\limits_{i=1}^n \left(X_i-\bar{X}\right)^4}{\left(\sum\limits_{i=1}^n \left(X_i - \bar{X}\right)^2 \right)^{2}} -3$$
+	\end{itemize}
+	}
+\end{frame}
+
+\subsection{О средних}
+\begin{frame}{Оценки центральной тенденции}
+    \only<1>{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Оценки разных средних, как и сами эти разные средние, вовсе не обязаны совпадать, как, например, у бимодального распределения на картинке. Этим можно пользоваться. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    Выборочное среднее~--- среднее арифметическое по выборке.
+
+    Выборочная медиана~--- центральный элемент вариационного ряда.
+
+    Выборочная мода~--- самое распространённое значение в выборке.
+
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{mmm.png}
+    \end{center}
+    }
+
+    \only<2>{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Перед вами пример из книги 1954 года "Как врать с помощью статистики". Дана выборка из 25 человек, про которых мы знаем их годовой доход. Представьте, что на основе этих данных нам нужно написать отчёт об уровне дохода в нашей генеральной совокупности, например, стране. Если мы хотим, чтобы отчёт выглядел оптимистично, мы можем написать, что что средний доход составляет $5700. Если нам нужны более пессимистичные оценки, мы можем написать, что большая часть людей получает $2000; ну и промежуточный вариант со средним доходом $3000. Все эти оценки являются оценками разных средних, и часто упоминание того, какое именно среднее было использовано, из текста выбрасывается. Мы рассказываем вам это не для того, чтобы вы так делали - за это вы будете гореть в аду - а чтобы вы понимали, что другие люди могут так делать.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    (Huff, 1954):
+    \begin{center}
+        \includegraphics[height=0.85\textheight]{howto.png}
+    \end{center}
+    }
+\end{frame}
+
+\subsection{Об ограниченности статистик}
+\begin{frame}{Об ограниченности статистик}
+	\only<1>{		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Вообще говоря, никакое среднее не может полностью передать распределение исследуемой вами величины. Пример - стартовые заработные платы выпускников юридических факультетов по данным опроса участников американской ассоциации юристов. Их средняя зарплата составляет $80000, но по картинке, которая представляет собой по сути выборочную оценку плотности распределения показателя, хорошо видно, что $80000 не получает примерно никто. Как бы вы не посчитали по этим данным среднее, глядя на него, а не на картинку, вы никогда не поймёте, как устроены ваши данные.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\vspace{-10pt}
+		
+		\begin{center}
+			\includegraphics[height=0.8\textheight]{nalp2012.png}
+		\end{center}
+		Уровень стартовой заработной платы выпускников юридических факультетов, США, 2012, данные NALP.
+	}
+	\only<2>{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Это справедливо, разумеется, не только для средних. Один из самых известных примеров - это квартет Энскомба, четыре пары таких выборок, что их выборочные средние, дисперсии и корреляции совпадают с точностью до двух знаков после запятой. Таблица показывает нам, что все четыре пары выборок примерно одинаковые, 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		Квартет Энскомба (Anscombe, 1973):
+		
+		\bigskip
+		
+		\begin{center}
+			\begin{tabular}{|l|cccc|}
+				\hline
+				\text{№}& 1    & 2    & 3    & 4    \\ \hline
+				$\bar{x}$ & 9    & 9    & 9    & 9    \\ \hline
+				$S_x$   & 11   & 11   & 11   & 11   \\ \hline
+				$\bar{y}$ & 7.5  & 7.5  & 7.5  & 7.5  \\ \hline
+				$S_y$    & 4.127& 4.127& 4.128& 4.128\\ \hline
+				$r_{xy}$  & 0.816& 0.816& 0.816& 0.816\\ \hline
+			\end{tabular}
+		\end{center}
+	}
+	
+	\only<3>{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% но, если мы посмотрим, как они выглядят на графиках, мы увидим, что это далеко не так. Мораль: не полагайтесь на обобщающие статистики, всегда смотрите на оценки плотности и гистограммы, чтобы понять, как именно ваши данные устроены.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{Anscombe's_quartet.png}
+		\end{center}
+	}
+\end{frame}
+
+\section{Оценки}
+\subsection{Параметрические методы}
+\begin{frame}{Точечные оценки}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Определение робастности не строгое, потому что "отклонение" и "выброс" тоже строго не определяются.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    Пусть распределение генеральной совокупности параметрическое:
+    $$F(x) = F(x,\theta).$$
+
+    Статистика $\hat{\theta}_n = \hat{\theta}\left(X^n\right)$~--- точечная оценка параметра $\theta$.
+
+    Какая оценка лучше?
+
+    \bigskip
+
+    \textbf{Состоятельность:} $\plim\limits_{n\rightarrow\infty} \hat{\theta}_n  = \theta$.
+
+    \textbf{Несмещённость:} $\mathbb{E}\hat{\theta}_n = \theta$.
+
+    \textbf{Асимптотическая несмещённость:} $\lim\limits_{n\rightarrow\infty}\mathbb{E}\hat{\theta}_n = \theta$.
+
+    \textbf{Оптимальность:} $\mathbb{D}\hat{\theta}_n = \min\limits_{\hat{\theta}\colon \mathbb{E}\hat{\theta}=\theta} \mathbb{D}\hat{\theta}$.
+
+    \textbf{Робастность:} устойчивость $\hat{\theta}_n$ относительно 
+    \begin{itemize}
+    	\item отклонений истинного распределения $X$ от модельного семейства
+    	\item выбросов, содержащихся в выборке
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Метод максимума правдоподобия}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ММП - популярный метод получения оценок, когда семейства распределений заданы с точностью до параметров.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Популярный метод получения точечных оценок:
+	\begin{align*}
+	X  &\sim f\left(x, \theta\right), \\
+	X^n&=\left(X_1,\dots,X_n\right), \\
+	L\left(X^n,\theta\right) &= \prod\limits_{i=1}^n f\left(X_i, \theta\right), \\
+	\hat{\theta}_{MLE}&\equiv \argmax{\theta} L\left( X^n, \theta \right).
+	\end{align*}
+	
+	\bigskip
+	
+	Удобно прологарифмировать:
+	\begin{align*}
+	\log L\left(X^n,\theta\right) &= \sum\limits_{i=1}^n f\left(X_i, \theta\right), \\
+	\hat{\theta}_{MLE}&\equiv \argmax{\theta} \log L\left( X^n, \theta \right).
+	\end{align*}
+\end{frame}
+
+\begin{frame}{Производные функции правдоподобия}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Иногда получать ОМП удобнее не напрямую, а через score function - производную логарифма правдоподобия. Запомните, что это такое, нам ещё пригодится.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Score function:
+	$$S\left(\theta\right) \equiv \frac{\partial}{\partial \theta} \log L\left( \theta\right)$$
+	ОМП~--- решение score equation:
+	$$S\left(\theta\right)=0$$
+	
+	\bigskip 
+	
+	Информация Фишера:
+	$$I\left(\theta\right) \equiv  - \frac{\partial^2}{\partial\theta^2}\log L\left(\theta\right)$$
+	Дисперсия ОМП:
+	$$\mathbb D\hat{\theta}_{MLE} \approx I^{-1}\left(\hat{\theta}_{MLE}\right)$$
+\end{frame}
+
+\begin{frame}{Свойства ОМП}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{itemize}
+		\item состоятельность: $$\plim\limits_{n\rightarrow\infty} \hat{\theta}_{MLE}  = \theta$$
+		\item асимптотическая нормальность: при $n\rightarrow \infty$ $$\hat{\theta}_{MLE}\sim N\left(\theta, I^{-1}(\theta)\right)$$
+		\item эффективность: ОМП имеют наименьшую дисперсию среди всех состоятельных оценок
+		\item инвариантность: $g\left(\hat{\theta}_{MLE}\right)$~--- ОМП-оценка для $g\left(\theta\right)$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Интервальные оценки}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    Доверительный интервал:
+    $$\prob\left(\theta \in \left[C_L, C_U\right]\right)\geq 1-\alpha,$$
+    $1-\alpha$~--- уровень доверия, 
+    
+    $C_L$, $C_U$~--- нижний и верхний доверительные пределы.
+
+    \bigskip
+
+	\textbf{Неверная интерпретация}: неизвестный параметр лежит в пределах построенного доверительного интервала с вероятностью $1-\alpha$.
+	
+	\bigskip
+
+	\textbf{Верная интерпретация:} при бесконечном повторении процедуры построения доверительного интервала на аналогичных выборках в~$100(1-\alpha)$\% случаев он будет содержать истинное значение $\theta$.
+\end{frame}
+
+\begin{frame}{Для нормального распределения}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% по сути это более точная версия правил 2-3 сигм, обобщённая на произвольное количество сигм
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	$X\sim N\left(\mu,\sigma^2\right),\;\; X^n=\left(X_1,\dots,X_n\right),$
+	
+	\bigskip
+	
+	$\bar{X}_n$~--- оценка $\mathbb{E}X=\mu,$
+	\bigskip
+	
+    $\bar{X}_n\sim N\left(\mu, \frac{\sigma^2}{n}\right) \Rightarrow $
+	$$\prob \left(\mu-z_{1-\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}  \leq \bar{X}_n \leq \mu +z_{1-\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} \right)=1-\alpha \Rightarrow $$
+	
+	доверительный интервал для $\mu$:
+	$$\prob \left(\bar{X}_n-z_{1-\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}  \leq \mu \leq \bar{X}_n +z_{1-\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} \right)=1-\alpha,$$
+	$z_{1-\frac{\alpha}{2}}$~--- квантиль стандартного нормального распределения.
+\end{frame}
+
+\begin{frame}{Для ненормальных распределений}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% для ненормальных распределений интервалы приближённые
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	ЦПТ: если $X^n$~--- выборка из $F(x)$, $F(x)$~не~слишком скошено и $n>30$, то 
+	$$\bar{X}_n \sim \approx N\left(\mathbb{E}X, \frac{\mathbb{D}X}{n}\right) \Rightarrow$$
+	
+	доверительный интервал для $\mathbb{E}X$:
+	$$\prob \left(\bar{X}_n-z_{1-\frac{\alpha}{2}} \sqrt{\frac{\mathbb{D}X}{n}}  \leq \mathbb{E}X \leq \bar{X}_n +z_{1-\frac{\alpha}{2}} \sqrt{\frac{\mathbb{D}X}{n}} \right)\approx 1-\alpha.$$
+	
+	Если дисперсия неизвестна:
+	$$\prob \left(\bar{X}_n-t_{n-1, 1-\frac{\alpha}{2}} \frac{S_n}{\sqrt{n}}  \leq \mathbb{E}X \leq \bar{X}_n +t_{n-1, 1-\frac{\alpha}{2}} \frac{S_n}{\sqrt{n}} \right)\approx 1-\alpha,$$
+	$t_{n-1, 1-\frac{\alpha}{2}}$~--- квантиль распределения Стьюдента с $n-1$ степенью свободы.
+\end{frame}
+
+\subsection{Непараметрические методы}
+\begin{frame}{Квантили}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% На этом слайде мы построили доверительный интервал для квантиля произвольного непрерывного распределения, не ограничивая класс распределений параметрическими предположениями. Далее мы рассмотрим ещё один непараметрический способ получения оценок.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Непараметрический доверительный интервал для медианы непрерывного распределения.
+	$$X^n = \left(X_1,\dots, X_n\right), \;\; X\sim F\left(x\right)\; \Rightarrow$$
+	$$\prob\left(\med X \in \left[X_{(r)}, X_{(n-r+1)}\right]\right) = \frac1{2^n} \sum\limits_{i=r}^{n-r+1} C_n^i.$$
+	
+	При $n>10$ применима нормальная аппроксимация: 
+	
+	$$\prob\left(\med X \in \left[X_{\left(\left\lfloor \frac{n - \sqrt{n} z_{1-\frac{\alpha}{2}}}{2} \right\rfloor\right)}, X_{\left(\left\lceil  \frac{n + \sqrt{n} z_{1-\frac{\alpha}{2}}}{2} \right\rceil \right)}\right]\right) \approx 1-\alpha.$$
+	
+	\bigskip
+	
+	Аналогично строится непараметрический доверительный интервал для любого квантиля $X_\alpha, \alpha\in\left(0,1\right)$:
+	$$\prob\left(X_\alpha \in \left[X_{(l)}, X_{(u)}\right]\right) = \sum\limits_{i=l}^u C_n^i \alpha^i \left(1-\alpha\right)^{n-i}.$$
+\end{frame}
+
+\subsection{Бутстреп}
+\begin{frame}{Построение доверительных интервалов}
+	\only<1>{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Чтобы построить доверительный интервал для параметра, который оценивает наша статистика, нужно понимать, как эта статистика распределена. Есть три способа. Предположить, что распределение признака в генеральной совокупности какое-то параметрическое и вывести из этого предположения закон распределения статистики - работает не всегда: во-первых, не всегда можно предположить, как распределена совокупность, во-вторых, не для всех статистик из этого предположения можно что-то вывести. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		Как можно оценить  $F_{\hat{\theta}_n}\left(x\right)$~--- выборочное распределение статистики $\hat{\theta}_n$?
+		
+		(Hesterberg, 2005):	
+		\begin{itemize}
+			\item параметрический метод:
+		\end{itemize}	
+		\begin{figure}
+			\includegraphics[width=0.8\textwidth]{boot1.png}
+		\end{figure} 	
+		Сделать предположение, что $X$ распределена по закону $F_X\left(x\right)$, при выполнении которого закон распределения $\hat{\theta}_n$ известен.	
+	}
+	
+	\only<2>{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Второй способ - наивный: извлечь из генеральной совокупности много выборок одного и того же размера n, на каждой вычислить значение статистики и по полученной выборке значений оценить её распределение гистограммой или чем-то ещё. Этот метод применим скорее в теории, чем на практике: если не представляет сложности неограниченно генерировать выборки из генеральной совокупности, то можно и саму статистику вычислить на генеральной совокупности, а значит, интервальная оценка не нужна, поскольку известно настоящее значения статистики.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\begin{itemize}
+			\item наивный метод:
+		\end{itemize}	
+		\begin{figure}
+			\includegraphics[width=\textwidth]{boot2.png}
+		\end{figure} 
+		
+		Извлечь из генеральной совокупности $N$ выборок объёма $n$ и оценить выборочное распределение $\hat{\theta}_n$ эмпирическим. 
+	}
+	
+	\only<3>{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Давайте считать, что мы находимся в реальном мире и доступа к генеральной совокупности у нас нет, а есть только  выборка объёма n. Давайте из этой выборки сделаем много псевдовыборок - выборок с возвращениями - того же самого объёма n. На каждой псевдовыборке посчитаем значение статистики; оказывается, что распределение значений статистики на псевдовыборках часто является хорошей оценкой истинного распределения статистики. Так работает бутстреп (слово означает петлю, которая пришита к заднему краю армейских ботинок, и отсылает нас к выражению "to pull oneself up by one's bootstraps" - что-то вроде Мюнхаузена, вытаскивающего себя из болота за волосы. Действительно, это выглядит как магия.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\begin{itemize}
+			\item бутстреп:
+		\end{itemize}	
+		\begin{figure}
+			\includegraphics[width=\textwidth]{boot3.png}
+		\end{figure}
+		Сгенерировать $N$ <<псевдовыборок>> объёма $n$ и оценить выборочное распределение $\hat{\theta}_n$ <<псевдоэмпирическим>>. 
+	}		
+\end{frame}
+
+\begin{frame}{Бутстреп}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Почему это вообще работает? Давайте вспомним наш гипотетический наивный метод оценки распределения статистики. Когда мы извлекаем новые выборки из генеральной совокупности, мы сэмплируем из функции распределения нашей случайной величины. Когда доступа к генеральной совокупности нет, а есть только выборка объёма n, лучшая наша оценка F(x) - эмпирическая функция распределения. Если мы будем сэмплировать из неё, мы получим ровно те самые псевдовыборки с возвращениями из исходной выборки.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Извлечение выборок из генеральной совокупности~--- сэмплирование из~неизвестного распределения $F_X\left(x\right).$	
+	
+	Лучшая оценка $F_X\left(x\right),$ которая у~нас есть~--- $F_{X^n}\left(x\right)$:
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{ecdf.png}
+	\end{center}
+	Сэмплировать из неё~--- это то же самое, что делать из $X^n$ выборки с~возвращением объёма $n$. 		
+\end{frame}
+
+\begin{frame}{Бутстреп-распределение}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Имея бутстрем-оценку распределения статистики, можно построить доверительный интервал для значения параметра, который она оценивает. Есть несколько способов.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	$X^{1*}, \dots, X^{N*}$~--- бутстреп-псевдовыборки из $X^n$ объёма $n$, 
+	
+	$\hat{\theta}_n^{1*}, \dots, \hat{\theta}_n^{N*}$~--- значения статистики на них, 
+	
+	$F_{\hat{\theta}_n}^{boot}(x)$~--- бутстреп-распределение $\hat{\theta}_n$~--- эмпирическая функция распределения, построенная по значениям статистики на псевдовыборках.
+	
+	\bigskip
+	
+	\begin{figure}
+		\includegraphics[width=\textwidth]{boot3.png}
+	\end{figure}
+	
+	\bigskip
+	
+	По $F_{\hat{\theta}_n}^{boot}(x)$ можно строить доверительные интервалы для $\theta$!
+\end{frame}
+
+\begin{frame}{Доверительные интервалы}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Во-первых, псевдовыборки можно использовать только для оценки дисперсии распределения статистики, а потом строить доверительный интервал для параметра, прибавляя и вычитая из значения статистики на исходной выборке корень из этой бутстреп-дисперсии, умноженный на квантиль распределения Стьюдента. Это стьюдентизированный бутстреп. 
+%Можно использовать всю информацию о распределении значений статистики на псевдовыборках: возьмём квантили нужного порядка от соответствующего бутстреп-распределения и получим искомый доверительный интервал. Так устроен базовый, или наивный бутстреп.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\only<1>{
+		\begin{itemize}
+			
+			\item Возьмём выборочные квантили бутстреп-распределения:
+			$$\prob\left(\left(F_{\hat{\theta}_n}^{boot}\right)^{-1}\left(\frac{\alpha}{2}\right) \leq \theta \leq \left(F_{\hat{\theta}_n}^{boot}\right)^{-1}\left(1-\frac{\alpha}{2}\right) \right)\approx 1-\alpha.$$	
+			Это базовый бутстреп.
+
+\item Посчитаем $S_n^{boot}$~--- выборочное стандартное отклонение $\hat{\theta}_n$ на псевдовыборках; 
+			$$\prob \left(\hat{\theta}_n - t_{n-1, 1-\frac{\alpha}{2}} S_n^{boot}  \leq \theta \leq \hat{\theta}_n + t_{n-1, 1-\frac{\alpha}{2}} S_n^{boot}\right)\approx 1-\alpha.$$	
+			Это стьюдентизированный бутстреп.
+		\end{itemize}
+	}
+	\only<2>{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Если внести в процедуру наивного бутстрепа некоторые изменения, можно получить несмещённый ускоренный бутстреп, который всегда будет давать более точные доверительные интервалы (почему - можете прочитать в учебнике Эфрона и Тибширани). Функции, которые строят бутстреп-доверительные интервалы, как правило, делают это сразу всеми возможными способами; рекомундую всегда выбирать BCa - тот самый bias-corrected accelerated вариант.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\begin{itemize}
+			\item Слегка изменим наивный бутстреп:
+			$$\prob\left(\left(F_{\hat{\theta}_n}^{boot}\right)^{-1}\left(\alpha_1\right) \leq \theta \leq \left(F_{\hat{\theta}_n}^{boot}\right)^{-1}\left(\alpha_2\right) \right)\approx 1-\alpha,$$	
+			
+			\vspace{-10pt}
+			
+			\begin{align*}
+			\alpha_1  &= \Phi\left(\hat{z}_0 + \frac{\hat{z}_0 + z_{\frac{\alpha}{2}}}{1 - \hat{a} \left(\hat{z}_0 + z_{\frac{\alpha}{2}}\right)}\right), \\
+			\alpha_2  &= \Phi\left(\hat{z}_0 + \frac{\hat{z}_0 + z_{1-\frac{\alpha}{2}}}{1 - \hat{a} \left(\hat{z}_0 + z_{1-\frac{\alpha}{2}} \right)} \right), \\	
+			\hat{z}_0 &= \Phi^{-1} \left(\frac1{N} \sum_{i=1}^N \left[ \hat{\theta}_n^{i*} < \hat{\theta}_n\right]\right), \\
+			\hat{a}   & \text{ не поместится на этом слайде}.\\
+			\end{align*}
+			
+			\vspace{-5pt}
+			
+			Это несмещённый ускоренный бутстреп.
+		\end{itemize}
+	}
+\end{frame}
+
+\begin{frame}{Свойства бутстрепа}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Бутсреп - крайне мощное средство оценки распределений практически каких угодно статистик, в том числе самых диких, не подвластных параметрической статистике (например, количество мод у распределения). Единственное его существенное ограничение в том, что он плохо работает в ситуациях, когда значение статистики зависит от маленького количества элементов выборки. Например, бутстреп-интервал для медианы будет не очень хорош, потому что медиана определяется только 1-2 значениями выборки. Ещё нагляднее это видно для такой статистики, как, допустим, максимум: сколько бы вы не бутстрапировали исходную выборку, ни на одной псевдовыборке вы не сможете получить значение статистики больше, чем исходное, да и вообще разных значений статистики на псевдовыборках, скорее всего будет не так много. Таким бутстрепом максимум исходной случайной величины хорошо не оценишь.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{itemize}
+		\item асимптотическая состоятельность
+		\item простота использования даже для самых сложных статистик
+		\item плохо работает для статистик, значение которых зависит от~небольшого числа элементов выборки
+	\end{itemize}
+\end{frame}
+
+\section{Гипотезы}
+\subsection{Теория}
+\begin{frame}{Проверка гипотез}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Проверка гипотез - основной инструмент этого курса, если в итоге вы в нём не разберётесь, считайте, что зря потратили время. Имеется выборка из случайной величины X, которая имеет неизвестное распределение P. Кроме того, выдвинута нулевая гипотеза об этом распределении (например, ”P принадлежит некоторому семейству распределений ?”) и альтернативная гипотеза (например, общая альтернатива ”P не принадлежит ?”). Требуется проверить, глядя на выборку, какая из двух гипотез, нулевая или альтернативная, более вероятна. Для этого используется некоторая статистика T , которая обладает очень важным свойством: если нулевая гипотеза справедлива, то точно известно, какое у статистики распределение, а если справедлива альтернатива, то распределение статистики — какое-то другое. Распределение F (x) называется нулевым распределением статистики, а пара, состоящая из статистики и нулевого распределения, образует статистический критерий для проверки нулевой гипотезы против альтернативы. Мы получаем данные, то есть, реализацию выборки, считаем на них значение статистики и по нему вычисляем так называемый достигаемый уровень значимости, или p-value, представляющий собой вероятность получить такое или ещё более экстремальное значение статистики при справедливости нулевой гипотезы. "Экстремальность" определяется относительно альтернативной гипотезы: допустим, если при альтернативе более вероятными являются большие значения статистики, то именно их мы и будем считать экстремальными. Затем p-value сравнивают с порогом ?, который называется уровнем значимости. Чаще всего ? = 0.05. Если p ? ?, то нулевая гипотеза отвергается в пользу альтернативы. Если p > ?, то нулевая гипотеза не отвергается.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\only<1>{
+		\begin{center}
+			\vspace{-10pt}
+			\begin{tabular}{rl}
+				выборка:                        & $X^n=\left(X_1,\ldots,X_n\right), \; X \sim \prob \in \Omega$         \\
+				нулевая гипотеза:               & $H_0\colon \prob\in\omega, \;\; \omega\in\Omega$ \\
+				альтернатива:                   & $H_1\colon \prob\notin\omega$ \\
+				статистика:                     & $T\left(X^n\right), \;\; T\left(X^n\right)\sim F\left(x\right) \;\text{при}\; \prob\in\omega$ \\
+				& \;\;\;\;\;\;\;\;\;\;\;\;\;\; $T\left(X^n\right)\not\sim F\left(x\right) \;\text{при}\; \prob\notin\omega$ \\
+				\multicolumn{2}{c}{\includegraphics[width=0.3\textwidth]{stats1.png}} \\
+				реализация выборки:             & $x^n=\left(x_1,\ldots,x_n\right)$ \\
+				реализация статистики:          & $t = T \left(x^n\right)$ \\
+				достигаемый уровень значимости: & $p\left(x^n\right)$~--- вероятность при $H_0$ получить \\
+				& $T \left(X^n\right)=t$ или ещё более экстремальное\\
+				\multicolumn{2}{c}{\includegraphics[width=0.3\textwidth]{stats2.png}} \\
+				\multicolumn{2}{c}{ $p\left(x^n\right) = \prob\left(T\geq t\left|H_0\right.\right)$ } \\
+				\multicolumn{2}{c}{Гипотеза отвергается при $p\left(x^n\right)\leq\alpha,\;\;\alpha$~--- уровень значимости} \\
+			\end{tabular}
+		\end{center}
+	}
+	\only<2>{
+		\vspace{-3pt}
+		\begin{center}
+			\includegraphics[height=0.8\textheight]{rememberkids.png}
+		\end{center}
+	}
+\end{frame}
+
+\begin{frame}{Достигаемый уровень значимости}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Достигаемый уровень значимости - достаточно сложная концепция. Например, авторы блога fivethirtyeight на конференции по мета-анализу провели опрос участников, спрашивая их, что такое достигаемый уровень значимости, и получили набор ответов от неправильных до "я не помню, нужно спросить моего аспиранта". И это исследователи - люди, которые часто сталкиваются со статистикой!
+% Проблема определения p-value в том, что оно длинное, но из него ничего нельзя выбросить так, чтобы оно не стало неправильным. Например, часто хочется думать, что p-value — это просто вероятность справедливости нулевой гипотезы, но это не так! Это хорошо понятно на следующем примере. В 2010 году осьминог Поль угадывал результаты матчей чемпионата мира по футболу с участием сборной Германии, выбирая из двух кормушек ту, на которой был изображён флаг страны-победителя. Из 13 матчей, в которых он пробовал свои силы, результаты 11 ему удалось угадать. Используя эти данные как выборку, можно проверить нулевую гипотезу о том, что он выбирал кормушку наугад против альтернативы о том, у осьминога есть сверхспособности к предсказанию результатов матчей. Критерий, которым проверяется эта нулевая гипотеза, будет разобран позже. Но если его применить, получится достигаемый уровень значимости p = 0.0112. Это значение — не вероятность, что осьминог выбирает кормушку наугад. Вероятность того, что осьминог выбирает кормушку наугад, равна единице! p = 0.0112 — это именно вероятность получить такие или ещё более экстремальные данные при условии справедливости нулевой гипотезы. Эта вероятность достаточно мала, но редкие события тоже происходят. И, как правило, именно о них пишут в газетах.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$$p = \prob\left(T\geq t\left|H_0\right.\right) \neq \prob \left(H_0\right)$$
+
+\textbf{Пример:} утверждается, что осьминог предсказывает результаты матчей с~участием сборной Германии на чемпионате мира по футболу 2010 года, выбирая кормушку с флагом страны-победителя.
+По результатам $13$~испытаний ему удаётся верно угадать результаты $11$~матчей.  Применяя подходящий статистический критерий, мы получаем $p\approx 0.0112.$
+
+\bigskip
+
+\begin{center}
+	\includegraphics[height=0.35\textheight]{pauloctopus.png}
+\end{center}
+
+\bigskip
+
+$0.0112$~--- не вероятность того, что осьминог выбирает кормушку наугад! Эта вероятность равна единице.
+\end{frame}
+
+\begin{frame}{Ошибки I и II рода}
+	\only<1>{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Существенная особенность механизма проверки гипотез — его несимметричность относительно пары нулевая гипотеза – альтернатива. Эта особенность тесно связана с понятиями ошибок первого и второго рода.Нулевая гипотеза может быть либо верна, либо неверна. В результате проверки гипотезы ее? можно либо принять, либо отвергнуть.  На главной диагонали находятся верные решения: либо принимается верная нулевая гипотеза, либо отвергается неверная нулевая гипотеза. А вот на побочной диагонали располагаются ошибки. Совершить ошибку первого рода — значит отвергнуть верную нулевую гипотезу. Если же принимается неверная нулевая гипотеза, то это ошибка второго рода.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\begin{center}
+			\begin{tabular}{ |r | p{3.1cm} | p{3.1cm} | }
+				\hline
+				& $H_0$ верна         & $H_0$ неверна \\ \hline
+				$H_0$ принимается & $H_0$ верно принята & Ошибка второго рода (False negative)\\ \hline
+				$H_0$ отвергается & Ошибка первого рода (False positive) & $H_0$ верно отвергнута\\
+				\hline
+			\end{tabular}
+		\end{center}
+		
+		\begin{figure}
+			\includegraphics[height=0.6\textheight]{typesI-II.png}
+		\end{figure}    
+	}
+	
+	\only<2>{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% В механизме проверки гипотез ошибки первого и второго рода неравнозначны. Ошибка первого рода критичнее, вероятность отвержение нулевой гипотезы в случае, когда она верна, жестко ограничивается. Если нулевая гипотеза отвергается при значении уровня значимости p ? ?, то вероятность ошибки первого рода получается ограниченной сверху величиной ?. Таким образом, любой корректный, хорошо построенный критерий имеет вероятность ошибки первого рода не больше, чем уровень значимости. Что касается ошибки второго рода, то она минимизируется по остаточному принципу. Понятие ошибки второго рода связано с понятием мощности статистического критерия. Мощность — это вероятность отверг- нуть неверную нулевую гипотезу.  Чтобы найти идеальный критерий для проверки пары нулевая гипотеза – альтернатива, нужно среди всех корректных критериев выбрать критерий с максимальной мощностью.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		Задача проверки гипотез несимметрична относительно пары $\left(H_0,H_1\right)$: вероятность ошибки первого рода ограничивается сверху величиной $\alpha$, а второго рода~--- минимизируется путём выбора критерия.
+		
+		\bigskip
+		
+		\textbf{Корректный} критерий: $\prob\left(p\left(T\right)\leq\alpha\left|H_0\right.\right)\leq \alpha \forall \prob \in \Omega$.
+		
+		\textbf{Мощность}: $\pow = \prob\left(p\left(T\right)\leq\alpha\left|H_1\right.\right).$
+		
+		\textbf{Состоятельный} критерий: $\pow \rightarrow 1 $ для всех альтернатив $H_1$ при $n\rightarrow \infty$.
+		
+		$T_1$~--- \textbf{равномерно наиболее мощный} критерий, если $\forall T_2$
+		\begin{align*}
+		\prob\left(p\left(T_1\right)\leq \alpha\left|H_1\right.\right) & \geq \prob\left(p\left(T_2\right)\leq \alpha\left|H_1\right.\right) \;\; \forall H_1\neq H_0, \\
+		\prob\left(p\left(T_1\right)\leq \alpha\left|H_0\right.\right) & = \prob\left(p\left(T_2\right)\leq \alpha\left|H_0\right.\right),
+		\end{align*}
+		причём хотя бы для одной $H_1$ неравенство строгое.
+	}
+\end{frame}
+
+\begin{frame}{Интерпретация результата}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Неравнозначность нулевой и альтернативной гипотезы видна уже на уровне терминологии. Если достига- емый уровень значимости p <= alpha, то говорят, что нулевая гипотеза отвергается в пользу альтернативы. Если достигаемый уровень значимости p > alpha, то нулевая гипотеза не отвергается. Когда гипотеза не отвергается, это значит только то, что нет доказательств того что она неверна. Но отсутствие доказательств не является доказательством ее верности! Это можно лучше понять на примере судебного процесса. Основное положение — презумпции невинов- ности: подсудимый по умолчанию невиновен (это нулевая гипотеза), и, если доказательств обратному нет, нельзя утверждать, что он преступник, даже если он на самом деле совершил преступление.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Если величина $p$ достаточно мала, то данные свидетельствуют против нулевой гипотезы в пользу альтернативы.
+	
+	Если величина $p$ недостаточно мала, то данные не свидетельствуют против нулевой гипотезы в пользу альтернативы.
+	
+	\bigskip
+	
+	При помощи инструмента проверки гипотез нельзя доказать справедливость нулевой гипотезы!
+	
+	Absence of evidence $\nRightarrow$ evidence of absence.
+\end{frame}
+
+\begin{frame}{Статистическая и практическая значимость}
+	\only<1>{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% На самом деле эксперименты проводятся не для того, чтобы получить значение p-value. Как правило, исследователя интересует размер эффекта, то есть степень отклонения данных от нулевой гипотезы. Например, если эксперимент связан с проверкой способностей предсказателя будущего, то размер эффекта — это вероятность верного предсказания. Если проверяется эффективность лекарства, то размер эффекта — это вероятность выздоровления пациента, который это лекарство принимает, за вычетом эффекта плацебо. При запуске программы лояльности для пользователей интернет-магазина размер эффекта — это последующее увеличение среднего чека. 
+% Размер эффекта — это величина, определенная на генеральной совокупности. Но, как правило, у исследователя есть только небольшая выборка из нее, а оценка размера эффекта по выборке — это случайная величина. Маленький достигаемый уровень значимости является показателем того, что такую оценку размера эффекта, какая получена по выборке, с маленькой вероятностью можно было получить случайно. Достигаемый уровень значимости зависит не только от размера эффекта, но и от объема выборки, по которой оценивается эффект. Если выборка небольшая, скорее всего, нулевая гипотеза на ней не отвергается (если только она не слишком дикая). Однако с ростом объема выборки начинают проявляться все более тонкие отклонения данных от нулевой гипотезы. Велика вероятность, что на достаточно большой выборке значительная часть разумных нулевых гипотез будет отвергнута. Именно поэтому, даже если нулевая гипотеза отвергнута, это еще не значит, что полученный эффект имеет какую-то практическую значимость, её нужно оценивать отдельно. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		Вероятность отвергнуть нулевую гипотезу зависит не только от того, насколько она отличается от истины, но и от размера выборки. 
+		
+		По мере увеличения $n$ нулевая гипотеза может сначала приниматься, но потом выявятся более тонкие несоответствия выборки гипотезе $H_0$, и она будет отвергнута. 
+		
+		\bigskip
+		
+		При любой проверке гипотез нужно оценивать \textbf{размер эффекта}~--- степень отличия нулевой гипотезы отличается от истины, и оценивать его практическую значимость. 
+	}
+	
+	\only<2>{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Первый пример связан с большим исследованием, в рамках которого на протяжении трех лет у большой выборки женщин измеряли вес, а также оценивали, насколько активно они занимаются спортом. По итогам исследования выяснилось, что женщины, которые в течение этого времени упражнялись не меньше часа в день, набрали значительно меньше веса, чем женщины, которые упражнялись менее 20 минут в день. Статистическая значимость этого результата достаточно высока: p < 0.001. Проблема в размере эффекта: разница в набранном весе между двумя исследуемыми группами женщин составила всего 150 граммов. 150 граммов за 3 года — это не очень много. Крайне сомнительно, что этот эффект имеет какую-то практическую значимость.
+%Еще один пример связан с клиническими испытаниями гормонального препарата «Премарин», который облегчает симптомы менопаузы. В 2002 году эти испытания были прерваны досрочно, поскольку было обна- ружено, что прием препарата ведет к значимому увеличению риска развития рака груди (на 0.08%), инсульта (на 0.08%) и инфаркта (на 0.07%). Этот эффект статистически значим; при этом на первый взгляд кажется, что размеры эффектов ничтожны. Например, если кому-то сказать, что его любимые конфеты повышают риск возникновения инфаркта на 0.07%, вряд ли это заставит человека отказаться от этих конфет. Тем не менее, если пересчитать размеры эффектов на всю популяцию людей, которым этот препарат может быть по- тенциально приписан, результатом будут тысячи дополнительных смертей. Разработчики препарата не могут взять на себя эту ответственность, поэтому такой препарат немедленно запрещают и снимают с рынка.
+% Этот пример показывает, что практическую значимость результата нельзя определить на глаз. В идеале она должна определяться человеком, который поставил задачу и понимает предметную область.
+% Еще один пример — это испытание лекарства, которое замедляет ослабление интеллекта у людей, страдающих болезнью Альцгеймера. В этом исследовании очень сложно измерить размер эффекта. В течение эксперимента одна часть испытуемых должна принимать лекарство, а другая — плацебо. Только по прошествии нескольких лет можно будет сравнить эти две группы. Поэтому такое исследование длится долгое время и дорого стоит. Если при испытании оказывается, что разница между снижением IQ в контрольной группе, где люди принимали плацебо, и тестовой группе, где люди принимали препарат, составляет 13 пунктов, это различие очень большое, и на практике этот эффект крайне значим. При этом может оказаться, что статистическая значимость не была достигнута, то есть p > alpha, и формально нулевую гипотезу об отсутствии эффекта лекарства нельзя отвергнуть. Если предмет исследования очень важен, то, оказавшись в подобной ситуации, возможно, стоит продолжать исследования: набрать еще выборку, уменьшить дисперсию оценки размера эффекта и убедиться в том, что важное открытие не упущено.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\begin{itemize}
+			\item (Lee et al, 2010): за три года женщины, упражнявшиеся не меньше часа в день, набрали значимо меньше веса, чем женщины, упражнявшиеся меньше 20~минут в день ($p<0.001$). 		
+			Разница в~набранном весе составила 150~г. 
+			Практическая значимость такого эффекта сомнительна. Подробности: \url{http://youtu.be/oqDZO-mfN4Q}.
+			\item (Ellis, 2010, гл.~2): в 2002 году клинические испытания гормонального препарата Премарин, облегчающего симптомы менопаузы, были досрочно прерваны. 
+			Было обнаружено, что его приём ведёт к~значимому увеличению риска развития рака груди на~0.08\%, риска инсульта на~0.08\% и~инфаркта на~0.07\%.
+			Формально эффект крайне мал, но с~учётом численности населения он превращается в тысячи дополнительных смертей.
+			\item (Kirk, 1996): если при испытании гипотетического лекарства, позволяющего замедлить прогресс ослабления интеллекта больных Альцгеймером, оказывается, что разница в IQ контрольной и тестовой групп составляет 13~пунктов, возможно, изучение лекарства стоит продолжить, даже если эта разница статистически незначима. 
+		\end{itemize}
+	}
+\end{frame}
+
+\begin{frame}{Другие особенности}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{itemize}
+		\item Выбранная статистика может отражать не всю информацию, содержащуюся в выборке. Пример:
+		$$H_0\colon X\sim N\left(\mu, \sigma^2\right), \;\; H_1\colon H_0 \text{ неверна;}$$
+		$$T\left(X^n\right)=g_1.$$
+		Все симметричные распределения будут признаны нормальными!
+		\item Гипотезы вида $H_0\colon \theta=\theta_0$ можно проверять при помощи доверительных интервалов для $\theta$: 
+		\begin{itemize}
+			\item если $\theta_0$ не попадает в $100\left(1-\alpha\right)$\% доверительный интервал для $\theta$, то $H_0$ отвергается на уровне значимости $\alpha$;
+			\item p-value~--- максимальное $\alpha$, при котором $\theta_0$ попадает в~соответствующий доверительный интервал.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\subsection{Пример}
+\begin{frame}{Shaken, not stirred}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Джеймс Бонд говорит, что предпочитает мартини взболтанным, но не смешанным. Проведём слепой тест: $n$ раз предложим ему пару напитков и~выясним, какой из двух он предпочитает.
+	
+	\bigskip
+	
+	Выборка: бинарный вектор длины $n$, $1$~--- Джеймс Бонд предпочёт взболтанный, $0$~--- смешанный.
+	
+	\bigskip
+	
+	Нулевая гипотеза: Джеймс Бонд не различает два вида мартини, т.\,е., выбирает наугад.
+	
+	\bigskip
+	
+	Статистика $T$~--- число единиц в выборке.
+\end{frame}
+
+\begin{frame}{Нулевое распределение}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Если нулевая гипотеза справедлива и Джеймс Бонд не различает два вида мартини, то равновероятны все выборки длины $n$ из нулей и единиц.
+	
+	\bigskip
+	
+	Пусть $n=16$, тогда существует $2^{16} = 65536$ равновероятных варианта. Статистика $T$ принимает значения от $0$ до $16$:
+	
+	\begin{center}
+		\includegraphics[height=0.6\textheight]{bond1.png}
+	\end{center}
+	
+\end{frame}
+
+\begin{frame}{Односторонняя альтернатива}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% достигаемый уровень значимости здесь - это суммарная высота всех красных столбиков
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	$H_1\colon$ Джеймс Бонд предпочитает взболтанный мартини.
+	
+	При справедливости такой альтернативы более вероятны большие значения $T$ (т.е., большие $T$ свидетельствуют против $H_0$ в пользу $H_1$).
+	
+	Вероятность того, что Джеймс Бонд предпочтёт взболтанный мартини в $12$ или более случаях из $16$ при справедливости $H_0$, равна $\frac{2517}{65536}\approx 0.0384$.
+	\begin{center}
+		\includegraphics[height=0.6\textheight]{bond2.png}
+	\end{center}
+	$0.0384$~--- достигаемый уровень значимости при реализации $t=12$.
+\end{frame}
+
+\begin{frame}{Двусторонняя альтернатива}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	$H_1\colon$ Джеймс Бонд предпочитает какой-то определённый вид мартини.
+	
+	При справедливости такой альтернативы и большие, и маленькие значения $T$ свидетельствуют против $H_0$ в пользу $H_1$).
+	
+	Вероятность того, что Джеймс Бонд предпочтёт взболтанный мартини в~$\geq 12$ случаях из $16$ при справедливости $H_0$, равна $\frac{5034}{65536}\approx 0.0768$.
+	\begin{center}
+		\includegraphics[height=0.6\textheight]{bond3.png}
+	\end{center}
+	$0.0768$~--- достигаемый уровень значимости при реализации $t=12$.
+\end{frame}
+
+\begin{frame}{Достигаемый уровень значимости}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		Чем ниже достигаемый уровень значимости, тем сильнее данные свидетельствуют против нулевой гипотезы в пользу альтернативы.
+		
+		\bigskip
+		
+		$0.0384$~--- вероятность реализации $t\geq 12$ при условии, что нулевая гипотеза справедлива, т.\,е. Джеймс Бонд выбирает мартини наугад.
+		
+		\bigskip
+		
+		Ещё раз: это не вероятность справедливости нулевой гипотезы!
+		
+\bigskip
+
+		\textbf{Пример:} пусть Джеймс Бонд выбирает взболтанный мартини в $51$\% случаев (ненаблюдаемая вероятность).
+		
+		\bigskip
+		
+		Пусть по итогам $100$ испытаний взболтанный мартини был выбран $49$ раз. Достигаемый уровень значимости против односторонней альтернативы~--- $p\approx 0.6178.$
+		Нулевая гипотеза не отвергается, при этом сказать, что она верна, было бы ошибкой~--- Джеймс Бонд выбирает смешанный и взболтанный мартини не с одинаковыми вероятностями!
+\end{frame}
+
+\begin{frame}{Мощность}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Предполагая значение параметра, относительно которого мы проверяем гипотезу, известным, мы можем построить распределение значений статистики при этом значении. Чтобы получить мощность, нужно просуммировать высоты всех столбиков, соответствующих значениям статистики, при которых нулевая гипотеза отвергается.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\only<1>{
+		Проверяя нулевую гипотезу против двусторонней альтернативы, мы отвергаем $H_0$ при $t\geq 13$ или $t \leq 3$, что обеспечивает достигаемый уровень значимости $p=0.0213\leq\alpha=0.05$.
+		\begin{center}
+			\includegraphics[height=0.3\textheight]{bond5.png}
+		\end{center}
+		Пусть Джеймс Бонд выбирает взболтанный мартини в $75$\% случаев.%    \vspace{-5pt}
+		\begin{center}
+			\includegraphics[height=0.3\textheight]{bond6.png}
+		\end{center}
+		$\pow \approx 0.6202,$ т.\,е., при многократном повторении эксперимента гипотеза будет отклонена только в $62$\% случаев.
+	}
+
+\only<2>{
+	Мощность критерия зависит от следующих факторов:
+	\begin{itemize}
+		\item размер выборки
+		\item размер отклонения от нулевой гипотезы
+		\item чувствительность статистики критерия
+		\item тип альтернативы
+	\end{itemize}
+}
+	
+	\only<3>{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% По этим кривым можно выбирать объём выборки, который нужен для обеспечения требуемой мощности
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\begin{center}
+			\includegraphics[width=0.8\textwidth]{powercurve.png}
+		\end{center}	
+	}	
+\end{frame}
+
+\begin{frame}{Размер выборки}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Особенности прикладной задачи: $1$ порция мартини содержит $55$~мл джина и $15$~мл вермута~--- суммарно около $25$~мл спирта.
+	Смертельная доза алкоголя при массе тела $80$~кг составляет от $320$ до $960$~мл спирта в~зависимости от толерантности (от $13$ до $38$ мартини).
+	
+	\bigskip
+	
+	Обеспечение требуемой мощности: размеры выборки подбирается так, чтобы при размере отклонения от нулевой гипотезы не меньше заданного (например, вероятность выбора взболтанного мартини не меньше $0.75$) мощность была не меньше заданной.
+\end{frame}
+
+\section{}
+\begin{frame}{Литература}
+\only<1>{
+	Справочники по статистике:
+	\begin{itemize}
+		\item Кобзарь А.И. \textit{Прикладная математическая статистика}, 2006.
+		\item Kanji G.K. \textit{100 statistical tests}, 2006.
+	\end{itemize}
+
+	\bigskip
+	
+	Вводные учебники по статистике: 
+	\begin{itemize}
+			\item Good P.I., Hardin J.W. \textit{Common Errors in Statistics (and How to Avoid Them)}, 2003.
+			\item Reinhart A. \textit{Statistics Done Wrong. The woefully complete guide}, \url{http://www.statisticsdonewrong.com/}
+	\end{itemize}
+	
+	\bigskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Все семинары этого курса будут на R. Пожалуйста, приносите с собой ноутбуки, поставьте на них R и Rstudio и выучите синтаксис R. Это легко можно сделать с помощью пакета swirl - сделайте это к следующему занятию. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	Python:
+	\begin{itemize}
+		\item Введение в Python: \url{https://www.stavros.io/tutorials/python/}
+		\item краткий справочник: \url{https://www.pythonsheets.com/}
+		\item курс по Python для анализа данных: \url{https://www.coursera.org/learn/mathematics-and-python}
+	\end{itemize}
+}
+
+\only<2>{
+Бутстреп:
+\begin{itemize}
+	\item Hesterberg T., Monaghan S., Moore D.S., Clipson A., Epstein R. \textit{Bootstrap methods and permutation tests}. In Introduction to the Practice of Statistics, 2005. \url{http://statweb.stanford.edu/~tibs/stat315a/Supplements/bootstrap.pdf}
+	\item Efron B., Tibshirani R. \textit{An Introduction to the Bootstrap}, 1993.
+\end{itemize}
+
+\bigskip
+
+Проверка гипотез: 
+\begin{itemize}
+	\item Good P.I., Hardin J.W. \textit{Common Errors in Statistics (and How to Avoid Them)}, 2003, глава 2.
+\end{itemize}
+}
+	
+\only<3>{\small	
+		
+	Begg I.M., Anas A., Farinacci S. (1992). \textit{Dissociation of processes in belief: Source recollection, statement familiarity, and the illusion of truth}. Journal of Experimental Psychology: General, 121(4), 446–458. 
+		
+	\vspace{5pt}
+	
+	Ellis P.D. \textit{The Essential Guide to Effect Sizes: Statistical Power, Meta-Analysis, and the Interpretation of Research Results}, 2010.
+	
+	\vspace{5pt}
+
+	Huff D. \textit{How To Lie With Statistics}, 1954.
+
+	\vspace{5pt}
+	
+	Kirk R.E. (1996). \textit{Practical Significance: A Concept Whose Time Has Come}. Educational and Psychological Measurement, 56(5), 746–759. 
+	
+	\vspace{5pt}
+		
+	Marriott, F. H. C. \textit{The Interpretation of Multiple Observations}, 1974.
+	}
+\end{frame}
+
+
+\begin{frame}{Система оценок за курс}
+\huge
+В порядке возрастания важности:
+\begin{itemize}
+\item Google-формы с заданиями после каждого занятия (0-1);
+\item две проверочные работы (3);
+\item две домашние работы (4);
+\item устный зачет (2).
+\end{itemize}
+\end{frame}
+
+\end{document}
