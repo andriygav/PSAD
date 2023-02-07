@@ -1,0 +1,10 @@
+numpy==1.19.4
+matplotlib==3.3.4
+pandas==1.0.5
+scipy==1.5.4
+seaborn==0.11.0
+statsmodels==0.12.1
+arch==4.16.1
+permute==0.1a5
+permutation-test==0.18
+cryptorandom==0.2

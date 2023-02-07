@@ -1,0 +1,147 @@
+
+
+# en/2T93QkAg0p38.xml.gz
+# kk/2T93QkAg0p38.xml.gz
+
+(src)="1"> What can you do with language in the world besides amateur astronomy ?
+(trg)="1"> Cіз дүние жүзіндегі тілмен не істей аласыз әуесқой астрономияны санамағанда ?
+(src)="2"> Well , I haven 't told you yet , but I want to give you a little quiz and allow you to guess .
+(trg)="2"> Мен алдында ештеңе айтпап едім, бірақ кішкене бір бақылау жұмысын берейін және де сіз осыны орындаңыз .
+# en/31QGMCYW2dyG.xml.gz
+# kk/31QGMCYW2dyG.xml.gz
+
+(src)="1"> ( Mechanical noises ) ( Music )
+(trg)="1"> ( Механикалық ырғақтар ) ( Әуен )
+(src)="2"> ( Applause )
+(trg)="2"> ( Қошемет )
+
+# en/3wr74jp87oWm.xml.gz
+# kk/3wr74jp87oWm.xml.gz
+
+(src)="1"> We 'll start by talking about language models .
+(trg)="1"> Біз тақырыпты тіл үлгілерінен бастаймыз .
+(src)="2"> Historically , there have been two types of models that have been popular for natural language understanding within Al .
+(trg)="2"> Ертеде тіл үлгілерінің екі түрі белгілі болған табиғи тілді AI- де түсіну үшін
+(src)="3"> One of the types of models has to do with sequences of letters or words ?
+(trg)="3"> Сол тіл үлгілерінің бірі әріптер мен сөздердің реттілігімен байланысты
+(src)="4"> These types of models tend to be probabilistic in that we 're talking about the probability of a sequence , word based in that mostly what we 're dealing with is the surface words themselves , and sometimes letters .
+(trg)="4"> Бұл үлгілердің түрлері шынында ықтималдылыққа келеді сондықтан біз реттіліктің ықтималдылығын талқылап отырмыз , сөздер тура мағынада қолданылады , кейде әріп арқылы танылады .
+(src)="7"> Now , in contrast to that is another type of model that you might have seen before , where we 're primarily dealing with trees and with abstract structures .
+(trg)="6"> Енді сіз басқа үлгі түрін көріп отырсыз, бұл үлгі түрімен алдында танысып өткенбіз ол жерде негізінен біз ағаш пен абстракт құрылымдарымен жұмыс жасадық .
+(src)="10"> Now , these types of models have different properties .
+(trg)="8"> Бұл үлгі түрінің неше түрлі қасиеттері бар :
+(src)="11"> For one , they tend to be logical rather than probabilistic -- that is whereas on this side , we 're talking about the probability of a sequence of words , on this side we 're talking about a set of sentences and that set defines the language , and a sentence is either in the language or not .
+(trg)="9"> Біріншісі, олар ықтималдылыққа емес , логикаға сүйенеді . бір жағынан , біз сөздердің реттілігінің ықтималдылығын қарастырамыз басқа жағынан , біз сөйлемдердің тобын және осы топ тілді анықтайды , содан сөйлем тіл құрамында ма жоқ па екенін анықтаймыз .
+(src)="12"> It 's a Boolean logical distinction rather than on this side a probabilistic distinction .
+(trg)="10"> Бұл ықтималдық айырмашылық емес , логикалық айырмашылық болып табылады
+(src)="13"> These models are based on abstraction such as trees and categories -- categories like noun phrase and verb phrase and tree structures like this that don 't actually occur in the surface form , so the words that we can observe .
+(trg)="11"> Осы үлгілер абстракт заттарға суйенеді, яғни ағаштар және оның құрамалары мысалы, зат есім мен етістік сөздері және келесідей ағаш құрамалары ақиқатында, біз көретіндей бетінде орын алмайды .
+(src)="17"> Now , these distinctions are not hard to cut .
+(trg)="16"> Осыдан болар бұл айырмашылықтарды айыру қиын емес
+(src)="18"> You could have trees and have a probabilistic model of them .
+(trg)="17"> Сіздің қолыңызда ағаш пен оның ықтималдылық үлгісі бар
+(src)="19"> You could learn trees .
+(trg)="18"> Сіз ағашты зерттей аласыз
+(src)="20"> We can go back and forth , but traditionally the two camps have divided up in this way .
+(trg)="19"> Біз алға және артқа жүре аламыз, бірақ екеуінің жолы бөлек .
+
+# en/41fLVamFx1rM.xml.gz
+# kk/41fLVamFx1rM.xml.gz
+
+(src)="1"> The next topic I want to address is called " Segmentation . "
+(trg)="1"> Келесі түсіндіретін тақырыбым " Бунақтау " .
+(src)="2"> This is the problem of given a sequence of language , figure out how to break it up into words .
+(trg)="2"> Бұл тілдің реттілігі туралы мәселе , оның сөздерге қалай бөлінетіндігі туралы .
+(src)="3"> Now , in Chinese we don 't have spaces between the words , and so in order to understand if the first word of this message corresponds to a single character or two characters or what , we have to be able to do the process of segmentation and figure out where they are .
+(trg)="3"> Қытай тілінде біз сөздерді бөлек жаза алмаймыз , осыны тұсіну үшін, хабардың бірінші сөзінің сәйкестігі бір әріпті немесе екі әріпке немесе , біз бунақтау әдісін қайда орналасатынына көз жеткізуіміз қажет
+(src)="4"> In English , we don 't have that .
+(src)="5"> Words have spaces between them .
+(trg)="4"> Ағылшын тілінде сөздерді бөлек жаза аламыз .
+(src)="6"> So we don 't have the segmentation problem , but we certainly have it in speech recognition in languages like English , because this speech sounds are sometimes run together without pauses in between them , and there are places where we do have a language without segmentation .
+(src)="9"> Let 's talk about how to do it .
+(trg)="6"> Бұны қалай шешу керек сол жайлы сөйлесейік .
+
+# en/4GBaUQduFsng.xml.gz
+# kk/4GBaUQduFsng.xml.gz
+
+(src)="1"> A few years ago , I felt like I was stuck in a rut , so I decided to follow in the footsteps of the great American philosopher , Morgan Spurlock , and try something new for 30 days .
+(trg)="1"> Бірнеше жыл бұрын өмірім тоқтап қалғандай сезіндім .
+(trg)="2"> Сөйтіп , белгілі америкалық философ Морган Сперлоктың 30 күн жаңа нәрсе жаса деген кеңесіне сүйендім .
+(src)="2"> The idea is actually pretty simple .
+(trg)="3"> Оның идеясы өте қарапайым .
+(src)="3"> Think about something you 've always wanted to add to your life and try it for the next 30 days .
+(trg)="4"> Өміріңізді өзгерткіңіз келген сәттерді есіңізге түсіріңізші енді соны 30 күн жасап көруге тырысыңыз .
+(src)="4"> It turns out 30 days is just about the right amount of time to add a new habit or subtract a habit --
+(trg)="5"> Шын мәнінде , 30 күн бір әдетке дағдылануға немесе бас тартуға қолайлы мерзім .
+(src)="5"> like watching the news -- from your life .
+(trg)="6"> Мысалы , жаңалықтар көруден мәңгілікке бас тарту .
+(src)="6"> There 's a few things I learned while doing these 30- day challenges .
+(trg)="7"> Осы айда бірдеңені үйрендім .
+(src)="7"> The first was , instead of the months flying by , forgotten , the time was much more memorable .
+(trg)="8"> Біріншісі , бұрын уақыт зулап өтіп кететін , ал қазір өткен уақыттарым есімде жақсы сақтала бастады .
+(src)="8"> This was part of a challenge I did to take a picture every day for a month .
+(trg)="9"> Тәжірибе барысында күнде сурет түсіріп жүрдім .
+(src)="9"> And I remember exactly where I was and what I was doing that day .
+(trg)="10"> Қазір менің әр сәттерім және дәлме- дәл қайда болғаным есімде .
+(src)="10"> I also noticed that as I started to do more and harder 30- day challenges , my self- confidence grew .
+(trg)="11"> Сонымен қатар , тапсырма санын ұлғайтып қиындатқанда сенімділігім артты .
+(src)="11"> I went from desk- dwelling computer nerd to the kind of guy who bikes to work .
+(trg)="12"> Үнемі компьютердің алдында отыратын адамнан жұмысқа велосипедпен баратын болдым .
+(src)="12"> For fun !
+(trg)="13"> Көңіл көтеру үшін .
+(src)="13"> ( Laughter )
+(trg)="14"> ( күлкі )
+(src)="14"> Even last year , I ended up hiking up Mt .
+(trg)="15"> Тіпті өткен жылы Африканың ең биік нүктесі
+(src)="15"> Kilimanjaro , the highest mountain in Africa .
+(trg)="16"> Килиманджаро тауына шықтым .
+(src)="16"> I would never have been that adventurous before I started my 30- day challenges .
+(trg)="17"> Осы 30 күндік тәжірибеден бұрын өмірімде мұнша " пысық " болған емеспін .
+(src)="17"> I also figured out that if you really want something badly enough , you can do anything for 30 days .
+(trg)="18"> Менің түсінгенім , егер бірдеңені қаласаң , 30 күн ішінде мақсатқа қол жеткізе аласың .
+(src)="18"> Have you ever wanted to write a novel ?
+(trg)="19"> Роман жазғың келген кезің болды ма ?
+(src)="19"> Every November , tens of thousands of people try to write their own 50, 000- word novel , from scratch , in 30 days .
+(trg)="20"> Әр қарашада мыңдаған адам 30 күнде 50 мың сөзден тұратын роман жазуға отырады .
+(src)="20"> It turns out , all you have to do is write 1, 667 words a day for a month .
+(trg)="21"> Яғни , бір күнде 1, 667 сөз жазып тұрсаңыз болды .
+(trg)="22"> Бір ай бойы .
+(src)="21"> So I did .
+(trg)="23"> Мен дәл солай жасадым .
+(src)="22"> By the way , the secret is not to go to sleep until you 've written your words for the day .
+(trg)="24"> Айтпақшы , бар құпиясы күнделікті мөлшерде жазбайынша ұйқыға кетпеуіңіз керек .
+(src)="23"> You might be sleep- deprived , but you 'll finish your novel .
+(trg)="25"> Бәлкім , шала ұйықтарсыз бірақ роман жазып бітіресіз .
+(src)="24"> Now is my book the next great American novel ?
+(trg)="26"> Романым танымал америкалық кітапқа айналды ма ?
+(src)="25"> No .
+(trg)="27"> Жоқ .
+(src)="26"> I wrote it in a month .
+(trg)="28"> Оны бір айда жаздым ғой .
+(src)="27"> It 's awful .
+(trg)="29"> Ол өте нашар шықты .
+(src)="28"> ( Laughter )
+(trg)="30"> ( Күлкі )
+(src)="33"> ( Laughter )
+(trg)="36"> ( Күлкі )
+(src)="34"> So here 's one last thing I 'd like to mention .
+(trg)="37"> Қорыта келгенде , айтқым келегені мынау .
+(src)="35"> I learned that when I made small , sustainable changes , things I could keep doing , they were more likely to stick .
+(trg)="38"> Түсінгенім күнделікті , өзгерістер жасасаң , бір затты істесең , тез арада дағдыға айналады ,
+(src)="38"> But they 're less likely to stick .
+(trg)="40"> Өзгерістерді қалыптастыру қиын
+(src)="41"> So here 's my question to you :
+(trg)="42"> Енді менің мынандай сұрағым бар .
+(src)="42"> What are you waiting for ?
+(trg)="43"> Осы күнге дейін кімді күтіп жүрсіз ?
+(src)="44"> For the next 30 days .
+(trg)="46"> Алдағы 30 күнде !
+(src)="45"> Thanks .
+(trg)="47"> Рақмет !
+(src)="46"> ( Applause )
+(trg)="48"> ( Қошемет )
+
+# en/4XKhxqx83dhI.xml.gz
+# kk/4XKhxqx83dhI.xml.gz
+
+

@@ -1,0 +1,4 @@
+Highest degree	don’t believe	no way to find out	some higher power	believe sometimes	believe but doubts	know God exists
+Less than high school	9	8	27	8	47	236
+High school or junior college	23	39	88	49	179	706
+Bachelor or graduate	28	48	89	19	104	293

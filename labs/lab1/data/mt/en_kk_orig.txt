@@ -1,0 +1,61 @@
+What can you do with language in the world besides amateur astronomy ?
+Well , I haven 't told you yet , but I want to give you a little quiz and allow you to guess .
+( Mechanical noises ) ( Music )
+( Applause )
+We 'll start by talking about language models .
+Historically , there have been two types of models that have been popular for natural language understanding within Al .
+One of the types of models has to do with sequences of letters or words ?
+These types of models tend to be probabilistic in that we 're talking about the probability of a sequence , word based in that mostly what we 're dealing with is the surface words themselves , and sometimes letters .
+Now , in contrast to that is another type of model that you might have seen before , where we 're primarily dealing with trees and with abstract structures .
+Now , these types of models have different properties .
+For one , they tend to be logical rather than probabilistic -- that is whereas on this side , we 're talking about the probability of a sequence of words , on this side we 're talking about a set of sentences and that set defines the language , and a sentence is either in the language or not .
+It 's a Boolean logical distinction rather than on this side a probabilistic distinction .
+These models are based on abstraction such as trees and categories -- categories like noun phrase and verb phrase and tree structures like this that don 't actually occur in the surface form , so the words that we can observe .
+Now , these distinctions are not hard to cut .
+You could have trees and have a probabilistic model of them .
+You could learn trees .
+We can go back and forth , but traditionally the two camps have divided up in this way .
+The next topic I want to address is called " Segmentation . "
+This is the problem of given a sequence of language , figure out how to break it up into words .
+Now , in Chinese we don 't have spaces between the words , and so in order to understand if the first word of this message corresponds to a single character or two characters or what , we have to be able to do the process of segmentation and figure out where they are .
+In English , we don 't have that .
+Words have spaces between them .
+So we don 't have the segmentation problem , but we certainly have it in speech recognition in languages like English , because this speech sounds are sometimes run together without pauses in between them , and there are places where we do have a language without segmentation .
+Let 's talk about how to do it .
+A few years ago , I felt like I was stuck in a rut , so I decided to follow in the footsteps of the great American philosopher , Morgan Spurlock , and try something new for 30 days .
+The idea is actually pretty simple .
+Think about something you 've always wanted to add to your life and try it for the next 30 days .
+It turns out 30 days is just about the right amount of time to add a new habit or subtract a habit --
+like watching the news -- from your life .
+There 's a few things I learned while doing these 30- day challenges .
+The first was , instead of the months flying by , forgotten , the time was much more memorable .
+This was part of a challenge I did to take a picture every day for a month .
+And I remember exactly where I was and what I was doing that day .
+I also noticed that as I started to do more and harder 30- day challenges , my self- confidence grew .
+I went from desk- dwelling computer nerd to the kind of guy who bikes to work .
+For fun !
+( Laughter )
+Even last year , I ended up hiking up Mt .
+Kilimanjaro , the highest mountain in Africa .
+I would never have been that adventurous before I started my 30- day challenges .
+I also figured out that if you really want something badly enough , you can do anything for 30 days .
+Have you ever wanted to write a novel ?
+Every November , tens of thousands of people try to write their own 50, 000- word novel , from scratch , in 30 days .
+It turns out , all you have to do is write 1, 667 words a day for a month .
+So I did .
+By the way , the secret is not to go to sleep until you 've written your words for the day .
+You might be sleep- deprived , but you 'll finish your novel .
+Now is my book the next great American novel ?
+No .
+I wrote it in a month .
+It 's awful .
+( Laughter )
+( Laughter )
+So here 's one last thing I 'd like to mention .
+I learned that when I made small , sustainable changes , things I could keep doing , they were more likely to stick .
+But they 're less likely to stick .
+So here 's my question to you :
+What are you waiting for ?
+For the next 30 days .
+Thanks .
+( Applause )

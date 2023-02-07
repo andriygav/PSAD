@@ -1,0 +1,14 @@
+Clone	August	November
+Columbia River	18.3	12.7
+Fritzi Pauley	13.3	11.1
+Hazendans	16.5	15.3
+Primo	12.6	12.7
+Raspalje	9.5	10.5
+Hoogvorst	13.6	15.6
+Balsam Spire	8.1	11.2
+Gibecq	8.9	14.2
+Beaupre	10.0	16.3
+Unal	8.3	15.5
+Trichobel	7.9	19.9
+Gaver	8.1	20.4
+Wolterson	13.4	36.8

@@ -1,0 +1,196 @@
+lifespan	diet
+105	restricted
+193	restricted
+211	restricted
+236	restricted
+302	restricted
+363	restricted
+389	restricted
+390	restricted
+391	restricted
+403	restricted
+530	restricted
+604	restricted
+605	restricted
+630	restricted
+716	restricted
+718	restricted
+727	restricted
+731	restricted
+749	restricted
+769	restricted
+770	restricted
+789	restricted
+804	restricted
+810	restricted
+811	restricted
+833	restricted
+868	restricted
+871	restricted
+875	restricted
+893	restricted
+897	restricted
+901	restricted
+906	restricted
+907	restricted
+919	restricted
+923	restricted
+931	restricted
+940	restricted
+957	restricted
+958	restricted
+961	restricted
+962	restricted
+974	restricted
+979	restricted
+982	restricted
+1001	restricted
+1008	restricted
+1010	restricted
+1011	restricted
+1012	restricted
+1014	restricted
+1017	restricted
+1032	restricted
+1039	restricted
+1045	restricted
+1046	restricted
+1047	restricted
+1057	restricted
+1063	restricted
+1070	restricted
+1073	restricted
+1076	restricted
+1085	restricted
+1090	restricted
+1094	restricted
+1099	restricted
+1107	restricted
+1119	restricted
+1120	restricted
+1128	restricted
+1129	restricted
+1131	restricted
+1133	restricted
+1136	restricted
+1138	restricted
+1144	restricted
+1149	restricted
+1160	restricted
+1166	restricted
+1170	restricted
+1173	restricted
+1181	restricted
+1183	restricted
+1188	restricted
+1190	restricted
+1203	restricted
+1206	restricted
+1209	restricted
+1218	restricted
+1220	restricted
+1221	restricted
+1228	restricted
+1230	restricted
+1231	restricted
+1233	restricted
+1239	restricted
+1244	restricted
+1258	restricted
+1268	restricted
+1294	restricted
+1316	restricted
+1327	restricted
+1328	restricted
+1369	restricted
+1393	restricted
+1435	restricted
+89	ad libitum
+104	ad libitum
+387	ad libitum
+465	ad libitum
+479	ad libitum
+494	ad libitum
+496	ad libitum
+514	ad libitum
+532	ad libitum
+536	ad libitum
+545	ad libitum
+547	ad libitum
+548	ad libitum
+582	ad libitum
+606	ad libitum
+609	ad libitum
+619	ad libitum
+620	ad libitum
+621	ad libitum
+630	ad libitum
+635	ad libitum
+639	ad libitum
+648	ad libitum
+652	ad libitum
+653	ad libitum
+654	ad libitum
+660	ad libitum
+665	ad libitum
+667	ad libitum
+668	ad libitum
+670	ad libitum
+675	ad libitum
+677	ad libitum
+678	ad libitum
+678	ad libitum
+681	ad libitum
+684	ad libitum
+688	ad libitum
+694	ad libitum
+695	ad libitum
+697	ad libitum
+698	ad libitum
+702	ad libitum
+704	ad libitum
+710	ad libitum
+711	ad libitum
+712	ad libitum
+715	ad libitum
+716	ad libitum
+717	ad libitum
+720	ad libitum
+721	ad libitum
+730	ad libitum
+731	ad libitum
+732	ad libitum
+733	ad libitum
+735	ad libitum
+736	ad libitum
+738	ad libitum
+739	ad libitum
+741	ad libitum
+743	ad libitum
+746	ad libitum
+749	ad libitum
+751	ad libitum
+753	ad libitum
+764	ad libitum
+765	ad libitum
+768	ad libitum
+770	ad libitum
+773	ad libitum
+777	ad libitum
+779	ad libitum
+780	ad libitum
+788	ad libitum
+791	ad libitum
+794	ad libitum
+796	ad libitum
+799	ad libitum
+801	ad libitum
+806	ad libitum
+807	ad libitum
+815	ad libitum
+836	ad libitum
+838	ad libitum
+850	ad libitum
+859	ad libitum
+894	ad libitum
+963	ad libitum
