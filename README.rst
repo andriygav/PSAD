@@ -4,7 +4,6 @@
 
 Объявления
 ==========
-- ВНИМАНИЕ: пара 21.02.2023 отменяется. Посмотрите пожалуйста записи прошлого года.
 - `Почта для связи. <grabovoy.av@phystech.edu>`_
 - `Ссылка на записи (2021) <https://youtube.com/playlist?list=PLk4h7dmY2eYEdKleN2_pwDBFwW0oX-pDl>`_
 - `Ссылка на записи (2022) <https://www.youtube.com/playlist?list=PLk4h7dmY2eYHf9yt5K2781NGhLZXv9y_q>`_
