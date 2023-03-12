@@ -7,6 +7,7 @@
 - `Почта для связи. <grabovoy.av@phystech.edu>`_
 - `Ссылка на записи (2021) <https://youtube.com/playlist?list=PLk4h7dmY2eYEdKleN2_pwDBFwW0oX-pDl>`_
 - `Ссылка на записи (2022) <https://www.youtube.com/playlist?list=PLk4h7dmY2eYHf9yt5K2781NGhLZXv9y_q>`_
+- КР-1 будет 14.03.2023 в 19:30
 
 Оценка за курс
 =============
