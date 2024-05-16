@@ -7,9 +7,8 @@
 - `Почта для связи. <grabovoy.av@phystech.edu>`_
 - `Ссылка на записи (2021) <https://youtube.com/playlist?list=PLk4h7dmY2eYEdKleN2_pwDBFwW0oX-pDl>`_
 - `Ссылка на записи (2022) <https://www.youtube.com/playlist?list=PLk4h7dmY2eYHf9yt5K2781NGhLZXv9y_q>`_
-- Контрольная работа №1 будет проведена 22.03.2024 в 19:30.
-- Контрольная работа №2 будет проведена 10.05.2024 в 19:00.
 - Зачет 17.05.2024 в 17:05.
+- Обновляемая таблица с оценками за курс (`тык <https://docs.google.com/spreadsheets/d/1SA6akIeXrcKU72WtzVL58P1BSNh8-SmDLuv8_AzGSg4/edit?usp=sharing>`_). Все спорные моменты будут решать во время зачета.
 
 Оценка за курс
 ==============
