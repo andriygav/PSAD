@@ -5,10 +5,9 @@
 Объявления
 ==========
 - `Почта для связи. <grabovoy.av@phystech.edu>`_
-- `Группа в тг. <https://t.me/+o_5ot9vF265kZTIy>`_
+- `Группа в тг. <https://t.me/+-qCoghRy7qo5OGUy>`_
 - `Ссылка на записи (2021) <https://youtube.com/playlist?list=PLk4h7dmY2eYEdKleN2_pwDBFwW0oX-pDl>`_
 - `Ссылка на записи (2022) <https://www.youtube.com/playlist?list=PLk4h7dmY2eYHf9yt5K2781NGhLZXv9y_q>`_
-- `Ссылка на оценки (2025) <https://docs.google.com/spreadsheets/d/1_s_Av1RiHw6Skv5AZZRfjQdx21VC8zGgJ_zqissxm8Y/edit?usp=sharing>`_
 
 Оценка за курс
 ==============
@@ -19,13 +18,13 @@
 
 Первое задание:
 *********************
-- Начало: 14.03.2025.
+- Начало: ??.03.2025.
 - Сдавать лично в течении семестра в конце семинара.
 - `Генератор задания <labs/lab1>`_.
 
 Второе задание:
 *********************
-- Начало: 18.04.2025.
+- Начало: ??.04.2025.
 - Сдавать лично в течении семестра в конце семинара.
 - `Генератор задания <labs/lab2>`_.
 
